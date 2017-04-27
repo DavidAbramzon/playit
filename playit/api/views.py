@@ -72,7 +72,6 @@ def get_players(request):
         pin_code = request_obj['pin_code']
         players = Player.objects.filter(game__pin_code=pin_code).all()
         return Response(players )
-        # todo : redirect to some sort of start game function.
 
 
 
