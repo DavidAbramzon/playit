@@ -1,12 +1,6 @@
 import datetime
 
-from django.contrib.auth.models import User
 from django.db import models
-
-
-def user_generated_subtitle_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'generated_subtitles/user_{0}/{1}'.format(instance.user.id, filename)
 
 
 class DefaultModel(models.Model):
@@ -21,32 +15,51 @@ class DefaultModel(models.Model):
     class Meta:
         abstract = True
 
-# todo : example delete me
+class GameType(DefaultModel):
 
-class Work(DefaultModel):
+    game_name = models.TextField()
+    python_model_name = models.TextField()
+
+
+
+class GameManager(DefaultModel):
+
+    def get_next_question(self):
+        pass
+
+    def save_answer(self, player, answer):
+        pass
+
+    def get_round_summary(self):
+        pass
+
+    def get_score_board(self):
+        pass
+
+    def get_answer(self):
+        pass
+
+    def choose_answer(self):
+        pass
+
+class Game(DefaultModel):
     """
-    Model for saving movies and episodes .
-     maybe the word Work is not very clear
+    Model for holding information about a single game
+    fields - PINCODE, game type,
     """
-    work_name = models.CharField(max_length=50)
-    work_type = models.TextField(blank=True)  ## for now text 'movie\episode' maybe in future foreign key
+    pin_code = models.AutoField(primary_key=True)
+    game_type = models.ForeignKey(GameType)
+    game_manager = models.ForeignKey(GameManager)
+    game_started = models.BooleanField()
 
-    # subtitle_path = models.FileField()
+#
 
-    def __repr__(self):
-        return self.work_name
+class Player(DefaultModel):
+    game = models.ForeignKey(Game)
+    nickname = models.TextField()
+    score = models.IntegerField(default=0)
 
-    def __unicode__(self):
-        return self.work_name
 
-# todo : example delete me
-
-class Subtitle(DefaultModel):
-    """
-    Model for saving subtitle uploaded by the user
-    """
-    subtitle_name = models.CharField(max_length=500)
-    work = models.ForeignKey(Work)  ## link to  the eposide/movie
-    owner = models.ForeignKey(User)
-    subtitle_path = models.FileField(upload_to="subtitles/%Y/%m/%d/")
+class Answer(DefaultModel):
+    player = models.ForeignKey(Player)
 
