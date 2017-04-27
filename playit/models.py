@@ -52,3 +52,18 @@ class Answer(DefaultModel):
     player = models.ForeignKey(Player)
     # answer field will be by user
 
+
+class GameManager(DefaultModel):
+
+    def get_next_question(self):
+        pass
+    def save_answer(self,player):
+        pass
+    def get_round_summary(self):
+        pass
+    def get_score_board(self):
+        pass
+    def get_answer(self):
+        pass
+    def choose_answer(self):
+        pass
