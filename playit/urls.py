@@ -39,7 +39,11 @@ urlpatterns = [
     url(r'^api/start_game/', api.views.start_game),
     url(r'^api/get_next_question/', api.views.get_next_question),
     url(r'^api/get_players/', api.views.get_players),
-    url(r'^api/get_session_object/', api.views.get_session_object)
+    url(r'^api/get_session_object/', api.views.get_session_object),
+    url(r'^api/save_answer/', api.views.save_answer),
+    url(r'^api/get_score_board/', api.views.get_score_board),
+    url(r'^api/get_round_summary/', api.views.get_round_summary),
+
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+[url(r'', TemplateView.as_view(template_name='index.html'))]
 
 
