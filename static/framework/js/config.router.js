@@ -3,22 +3,23 @@
 /**
  * Config for the router
  */
-app.config(['$stateProvider', '$urlRouterProvider',
-function ($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider','$locationProvider',
+function ($stateProvider,$urlRouterProvider,$locationProvider ) {
 
 
     // APPLICATION ROUTES
     // -----------------------------------
     // For any unmatched url, redirect to /app/dashboard
-    $urlRouterProvider.otherwise("/home");
+
     //
     // Set up the states
-    $stateProvider.state('home', {
+    $stateProvider.state('/home', {
         url: "/home",
         templateUrl: "/static/framework/views/HomeView/home.html"
     }).state('create-game', {
+        controller:"CreateGameController",
         url: "/create-game",
-        templateUrl: "/static/framework/views/CreateGameView/create-game.html"
+        templateUrl: "/static/framework/views/JoinGameView/join-game.html"
     }).state('join-game', {
         url: "/join-game",
         templateUrl: "/static/framework/views/JoinGameView/join-game.html"
@@ -28,6 +29,11 @@ function ($stateProvider, $urlRouterProvider) {
     }).state('show-question', {
         url: "/show-question",
         templateUrl: "/static/framework/views/ShowQuestionView/show-question.html"
+    });
+    $urlRouterProvider.otherwise("/home");
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
     });
 
 }]);
