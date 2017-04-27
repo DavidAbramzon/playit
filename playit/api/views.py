@@ -89,10 +89,6 @@ def get_session_object(request):
         return Response(request.session)
 
 
-
-
-
-
 @api_view(['POST'])
 def save_answer(request):
     if request.method == 'POST':
