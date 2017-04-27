@@ -27,14 +27,19 @@ class Game(DefaultModel):
     """
     pin_code = models.IntegerField()
     game_type = models.ForeignKey(GameType)
-    #game_manager = models. """need to hold object of gameManager"""
+    # game_manager = models. """need to hold object of gameManager"""
 # todo: check for the game manager option.
-
+#
 class GameType(DefaultModel):
 
     game_name = models.TextField()
     python_model_name = models.TextField()
 
+
+class Player(DefaultModel):
+    game = models.ForeignKey(Game)
+    nick_name = models.TextField()
+    score = models.IntegerField(default=0)
 
 
 class Work(DefaultModel):
