@@ -3,6 +3,7 @@
 */
 'use strict';
 angular.module("playit", [
+    'ui.router'
 
 
 ]);

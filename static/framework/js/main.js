@@ -3,7 +3,7 @@ app.run(['$rootScope', '$state', '$stateParams',
 function ($rootScope, $state, $stateParams) {
 
     // Attach Fastclick for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
-    FastClick.attach(document.body);
+    // FastClick.attach(document.body);
 
     // Set some reference to access them from any scope
     $rootScope.$state = $state;
