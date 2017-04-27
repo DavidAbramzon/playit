@@ -23,7 +23,7 @@ class Game(DefaultModel):
     """
     pin_code = models.IntegerField()
     game_type = models.ForeignKey(GameType)
-    game_manager = models. ForeignKey(GameManager)
+    game_manager = models.ForeignKey(GameManager)
     game_started = models.BooleanField()
 
 #
@@ -34,7 +34,7 @@ class GameType(DefaultModel):
 
 class Player(DefaultModel):
     game = models.ForeignKey(Game)
-    nick_name = models.TextField()
+    nickname = models.TextField()
     score = models.IntegerField(default=0)
 
 
