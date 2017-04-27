@@ -4,9 +4,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-def user_generated_subtitle_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'generated_subtitles/user_{0}/{1}'.format(instance.user.id, filename)
 
 
 class DefaultModel(models.Model):
@@ -69,4 +66,9 @@ class Subtitle(DefaultModel):
     work = models.ForeignKey(Work)  ## link to  the eposide/movie
     owner = models.ForeignKey(User)
     subtitle_path = models.FileField(upload_to="subtitles/%Y/%m/%d/")
+
+
+class Answer(DefaultModel):
+    player = models.ForeignKey(Player)
+    # answer field will be by user
 
