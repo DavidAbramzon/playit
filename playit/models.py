@@ -15,7 +15,6 @@ class DefaultModel(models.Model):
     class Meta:
         abstract = True
 
-# todo : example delete me
 
 class Game(DefaultModel):
     """
