@@ -1,14 +1,25 @@
 from rest_framework import serializers
+from playit.models import GameType, Player, Game, GameManager, Answer
 
-from playit.models import  Work, Subtitle
-
-from django.contrib.auth.models import User
-
-
-#todo example delete me
-
-class WordSerializer(serializers.ModelSerializer):
+class GameTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Work
-        fields = ('word_name', 'word_score')
+        model = GameType
+
+class GameManagerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GameManager
+
+class GameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+
+class PlayerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Player
+
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+
+
 
