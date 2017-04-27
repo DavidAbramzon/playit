@@ -94,7 +94,7 @@ fieldset {
   color: #1abc9c;
 }
 
-a {
+.link a {
   color: #ecf0f1;
   text-decoration: none;
 }

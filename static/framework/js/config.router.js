@@ -13,11 +13,9 @@ function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/app/dashboard");
     //
     // Set up the states
-    $stateProvider.state('app', {
-        url: "/app",
-        templateUrl: "/static/views/app.html",
-        resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
-        abstract: true
+    $stateProvider.state('home', {
+        url: "/",
+        templateUrl: "/static/framework/views/HomeView/home.html"
     }).state('app.dashboard', {
         url: "/dashboard",
         templateUrl: "/static/views/dashboard.html",
