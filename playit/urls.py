@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     url(r'^api/token-auth/', auth_views.obtain_auth_token),
-    url(r'^api/create_game/', auth_views.obtain_auth_token),
+    url(r'^api/create_game/',  api.views.create_game),
     url(r'^api/join_game/', api.views.join_game),
     url(r'^api/start_game/', api.views.start_game),
     url(r'^api/create_game/', api.views.create_game),
