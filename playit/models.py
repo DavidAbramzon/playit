@@ -24,22 +24,22 @@ class GameType(DefaultModel):
 
 class GameManager(DefaultModel):
 
-    def get_next_question(self):
+    def get_next_question(self,request):
         pass
 
-    def save_answer(self, player, answer):
+    def save_answer(self, request,player, answer):
         pass
 
-    def get_round_summary(self):
+    def get_round_summary(self,request):
         pass
 
-    def get_score_board(self):
+    def get_score_board(self,request):
         pass
 
-    def get_answer(self):
+    def get_answer(self,request):
         pass
 
-    def choose_answer(self):
+    def choose_answer(self,request):
         pass
 
 class Game(DefaultModel):
@@ -50,7 +50,7 @@ class Game(DefaultModel):
     pin_code = models.AutoField(primary_key=True)
     game_type = models.ForeignKey(GameType)
     game_manager = models.ForeignKey(GameManager)
-    game_started = models.BooleanField()
+    game_started = models.BooleanField(default=False)
 
 #
 
