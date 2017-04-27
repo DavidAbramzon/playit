@@ -1,22 +1,46 @@
-<head>    <link rel="stylesheet" href="/static/framework/css/style.css">
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
-  <div id="wrap">
-  <div id="regbar">
-    <div id="navthing">
-        <div class="row">
-        <h1><a href="#" class ="link" id="loginform">Create Game</a> </h1></div>
-
-        <div class="row"> <h1><a href="#" class ="link">Join Game</a></h1></div>
-
-
+<div  class="top-frame">
+    <img  class="logo" src="./Bullshit_files/logo.png">
+    <span  class="title"> BULLSHIT </span>
 </div>
-</div>
-  </div>
-</div>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src="js/index.js"></script>
+<section  class="home">
 
-</body>
+    <div  class="menu-button join-game" routerlink="/join-game">
+        <div  class="menu-button-icon">
+            <i  class="fa fa-gamepad"></i>
+        </div>
+        <div  class="menu-button-text">
+            <p  class="menu-button-text-main"> Join Game </p>
+            <p  class="menu-button-text-second"> Join a game by entering its PIN </p>
+        </div>
+    </div>
+
+    <div  class="menu-button create-game" routerlink="/create-game">
+        <div  class="menu-button-icon">
+            <i  class="fa fa-plus-square"></i>
+        </div>
+        <div  class="menu-button-text">
+            <p  class="menu-button-text-main"> Create Game </p>
+            <p  class="menu-button-text-second"> Set up a new game for you and your friends </p>
+        </div>
+    </div>
+
+    <div  class="menu-button present-game" routerlink="/present-game">
+        <div  class="menu-button-icon">
+            <i  class="fa fa-share-square-o"></i>
+        </div>
+        <div  class="menu-button-text">
+            <p  class="menu-button-text-main"> Present Game </p>
+            <p  class="menu-button-text-second"> Click here from the device you wish to use as a presenter </p>
+        </div>
+    </div>
+
+    <div  class="menu-button how-to-play">
+        <div  class="menu-button-icon">
+            <i  class="fa fa-youtube-play"></i>
+        </div>
+        <div  class="menu-button-text">
+            <p  class="menu-button-text-main"> How Do I Play? </p>
+            <p  class="menu-button-text-second"> Click here to see a video </p>
+        </div>
+    </div>
+</section></app-desktop-landing>
