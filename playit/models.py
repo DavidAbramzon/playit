@@ -20,6 +20,23 @@ class DefaultModel(models.Model):
 
 # todo : example delete me
 
+class Game(DefaultModel):
+    """
+    Model for holding information about a single game
+    fields - PINCODE, game type,
+    """
+    pin_code = models.IntegerField()
+    game_type = models.ForeignKey(GameType)
+    #game_manager = models. """need to hold object of gameManager"""
+# todo: check for the game manager option.
+
+class GameType(DefaultModel):
+
+    game_name = models.TextField()
+    python_model_name = models.TextField()
+
+
+
 class Work(DefaultModel):
     """
     Model for saving movies and episodes .
@@ -37,6 +54,9 @@ class Work(DefaultModel):
         return self.work_name
 
 # todo : example delete me
+
+
+
 
 class Subtitle(DefaultModel):
     """
