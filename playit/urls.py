@@ -35,7 +35,6 @@ urlpatterns = [
     url(r'^api/create_game/', auth_views.obtain_auth_token),
     url(r'^api/join_game/', api.views.join_game),
     url(r'^api/start_game/', api.views.start_game),
-    url(r'^api/create_game/', api.views.create_game),
     url(r'^api/get_next_question/', api.views.get_next_question),
     url(r'^api/get_players/', api.views.get_players),
     url(r'^api/get_session_object/', api.views.get_session_object),
