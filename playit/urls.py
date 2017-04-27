@@ -33,10 +33,13 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api/token-auth/', auth_views.obtain_auth_token),
     url(r'^api/create_game/', auth_views.obtain_auth_token),
-    url(r'^api/join_game/', auth_views.obtain_auth_token),
-    url(r'^api/start_game/', auth_views.obtain_auth_token),
-    url(r'^api/example', api.views.example),
-    url(r'^api/create_game', api.views.create_game)
+    url(r'^api/join_game/', api.views.join_game),
+    url(r'^api/start_game/', api.views.start_game),
+    url(r'^api/create_game/', api.views.create_game),
+    url(r'^api/start_game/', api.views.start_game),
+    url(r'^api/get_next_question/', api.views.get_next_question),
+    url(r'^api/get_players/', api.views.get_players),
+    url(r'^api/get_session_object/', api.views.get_session_object)
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+[url(r'', TemplateView.as_view(template_name='index.html'))]
 
 

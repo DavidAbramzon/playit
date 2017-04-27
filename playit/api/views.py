@@ -3,7 +3,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from playit.api.requests import CreateGameRequest
-from playit.api.serializers import WordSerializer
 from playit.models import  Game, Player
 
 
@@ -40,6 +39,7 @@ def join_game(request):
         nickname = request_obj['nickname']
         game  = Game.objects.get(pin_code=pin_code)
         player = Player(nickname=nickname ,game=game)
+        request.session['pin_code'] = pin_code
         return Response(player)
 
 @api_view(['POST'])
@@ -73,6 +73,15 @@ def get_players(request):
         pin_code = request_obj['pin_code']
         players = Player.objects.filter(game__pin_code=pin_code).all()
         return Response(players)
+
+
+@api_view(['GET'])
+def get_session_object(request):
+    if request.method == 'GET':
+        return Response(request.session)
+
+
+
 
 
 
