@@ -63,3 +63,5 @@ class Player(DefaultModel):
 class Answer(DefaultModel):
     player = models.ForeignKey(Player)
 
+class EmojitGameManager(GameManager):
+    test=models.TextField(default="test")

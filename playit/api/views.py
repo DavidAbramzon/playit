@@ -13,15 +13,6 @@ def validate_request(serializer, request_data):
     request_obj.is_valid(raise_exception=True)
     return request_obj.validated_data
 
-# todo : example delete me
-@api_view(['GET'])
-def example(request):
-    if request.method == 'GET':
-        return_dict = {
-            "test":"testasd"
-        }
-        return Response(return_dict)
-
 
 @api_view(['POST'])
 def create_game(request):
@@ -98,7 +89,7 @@ def save_answer(request):
         ans = request_obj['answer']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
-        ok = game_manager.save_answer(player,ans)
+        ok = game_manager.save_answer(request, player,ans)
         return Response(ok)
 
 @api_view(['GET'])
@@ -108,7 +99,7 @@ def get_round_summary(request):
         pin_code = request_obj['pin_code']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
-        summary = game_manager.get_round_summary()
+        summary = game_manager.get_round_summary(request)
         return Response(summary)
 
 @api_view(['GET'])
@@ -118,7 +109,7 @@ def get_score_board(request):
         pin_code = request_obj['pin_code']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
-        score_board = game_manager.get_score_board()
+        score_board = game_manager.get_score_board(request)
         return Response(score_board)
 
 
