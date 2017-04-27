@@ -47,7 +47,7 @@ class GameManager(DefaultModel):
     def get_next_question(self):
         pass
 
-    def save_answer(self, player):
+    def save_answer(self, player, answer):
         pass
 
     def get_round_summary(self):

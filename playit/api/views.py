@@ -62,7 +62,8 @@ def get_next_question(request):
         game_manager = game_obj.game_manager
         question = game_manager.get_next_question()
         return Response(question)
-        # todo : redirect to some sort of start game function.
+
+
 
 
 @api_view(['GET'])
@@ -71,7 +72,45 @@ def get_players(request):
         request_obj = validate_request(get_players,request.data)
         pin_code = request_obj['pin_code']
         players = Player.objects.filter(game__pin_code=pin_code).all()
-        return Response(players )
+        return Response(players)
+
+
+
+@api_view(['POST'])
+def save_answer(request):
+    if request.method == 'POST':
+        request_obj = validate_request(save_answer,request.data)
+        pin_code = request_obj['pin_code']
+        player = request_obj['player']
+        ans = request_obj['answer']
+        game_obj = Game.objects.get(pin_code=pin_code)
+        game_manager = game_obj.game_manager
+        ok = game_manager.save_answer(player,ans)
+        return Response(ok)
+
+@api_view(['GET'])
+def get_round_summary(request):
+    if request.method == 'GET':
+        request_obj = validate_request(get_round_summary,request.data)
+        pin_code = request_obj['pin_code']
+        game_obj = Game.objects.get(pin_code=pin_code)
+        game_manager = game_obj.game_manager
+        summary = game_manager.get_round_summary()
+        return Response(summary)
+
+@api_view(['GET'])
+def get_score_board(request):
+    if request.method == 'GET':
+        request_obj = validate_request(get_score_board,request.data)
+        pin_code = request_obj['pin_code']
+        game_obj = Game.objects.get(pin_code=pin_code)
+        game_manager = game_obj.game_manager
+        score_board = game_manager.get_score_board()
+        return Response(score_board)
+
+
+
+
 
 
 
