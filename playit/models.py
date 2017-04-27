@@ -21,7 +21,7 @@ class Game(DefaultModel):
     Model for holding information about a single game
     fields - PINCODE, game type,
     """
-    pin_code = models.IntegerField()
+    pin_code = models.AutoField()
     game_type = models.ForeignKey(GameType)
     game_manager = models.ForeignKey(GameManager)
     game_started = models.BooleanField()
