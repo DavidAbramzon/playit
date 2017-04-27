@@ -25,6 +25,8 @@ class Game(DefaultModel):
     pin_code = models.IntegerField()
     game_type = models.ForeignKey(GameType)
     game_manager = models. ForeignKey(GameManager)
+    game_started = models.BooleanField()
+
 #
 class GameType(DefaultModel):
 

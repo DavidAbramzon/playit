@@ -10,7 +10,7 @@ from playit.api.serializers import WordSerializer
 
 
 # todo : example delete me
-from playit.models import Work
+from playit.models import Work, Game
 
 
 class WorkViewSet(viewsets.ModelViewSet):
@@ -28,3 +28,16 @@ def example(request):
             "test":"testasd"
         }
         return Response(return_dict)
+
+
+@api_view(['POST'])
+def create_game(request):
+    if request.method == 'POST':
+        return_game = Game()
+        return return_game
+
+@api_view(['POST'])
+def start_game(request):
+    if  request.method == 'POST':
+
+
