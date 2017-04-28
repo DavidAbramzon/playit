@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+#SSH
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,7 +29,7 @@ SECRET_KEY = 'f9dwe@8jdqrhv^qsytrjq@lwa@$54$68!iu%v&esvl#f!8#w_!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.10.12.205']
+ALLOWED_HOSTS = ['127.0.0.1','10.10.12.205']
 
 # Application definition
 
@@ -39,6 +44,7 @@ INSTALLED_APPS = [
     'playit',
     'django_extensions',
     'rest_framework.authtoken',
+    'sslserver',
 
 
 ]

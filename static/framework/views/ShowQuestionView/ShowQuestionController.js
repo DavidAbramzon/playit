@@ -48,7 +48,8 @@ app.controller('ShowQuestionController', ['$stateParams', '$scope', 'ApiService'
             patCanvas.height = _video.height;
             var ctxPat = patCanvas.getContext('2d');
 
-            var idata = getVideoData($scope.patOpts.x, $scope.patOpts.y, $scope.patOpts.w, $scope.patOpts.h);
+            var idata = getVideoData($scope.patOpts.x, $scope.patOpts.y,
+                $scope.patOpts.w, $scope.patOpts.h);
             ctxPat.putImageData(idata, 0, 0);
 
             sendSnapshotToServer(patCanvas.toDataURL());
