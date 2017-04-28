@@ -1,6 +1,10 @@
 import datetime
 
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.contrib.contenttypes.fields import GenericForeignKey
+
+
 
 
 class DefaultModel(models.Model):
@@ -22,12 +26,13 @@ class GameType(DefaultModel):
 
 
 
+
 class GameManager(DefaultModel):
 
     def get_next_question(self,request):
         pass
 
-    def save_answer(self, request,player, answer):
+    def save_answer(self, request,player):
         pass
 
     def get_round_summary(self,request):
@@ -49,8 +54,11 @@ class Game(DefaultModel):
     """
     pin_code = models.AutoField(primary_key=True)
     game_type = models.ForeignKey(GameType)
-    game_manager = models.ForeignKey(GameManager)
+    round_number = models.IntegerField(default=1)
     game_started = models.BooleanField(default=False)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    game_manager = GenericForeignKey()
 
 #
 
@@ -58,10 +66,13 @@ class Player(DefaultModel):
     game = models.ForeignKey(Game)
     nickname = models.TextField()
     score = models.IntegerField(default=0)
+    last_round_score = models.IntegerField(default=0)
+
 
 
 class Answer(DefaultModel):
     player = models.ForeignKey(Player)
 
-class EmojitGameManager(GameManager):
-    test=models.TextField(default="test")
+class Question(DefaultModel):
+    pass
+

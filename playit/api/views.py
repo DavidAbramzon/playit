@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -13,6 +14,15 @@ def validate_request(serializer, request_data):
     request_obj.is_valid(raise_exception=True)
     return request_obj.validated_data
 
+# todo : example delete me
+@api_view(['GET'])
+def example(request):
+    if request.method == 'GET':
+        return_dict = {
+            "test":"testasd"
+        }
+        return Response(return_dict)
+
 
 @api_view(['POST'])
 def create_game(request):
@@ -20,10 +30,12 @@ def create_game(request):
         request_obj = validate_request(CreateGameRequest,request.data)
         game_type_obj = GameType.objects.get(id=request_obj['game_type_id'])
         # todo : need to import from module name
-        new_game_manager = GameManager()
+        from django.utils.module_loading import import_string
+
+        game_manager_module = import_string(game_type_obj.python_model_name)
+        new_game_manager = game_manager_module()
         new_game_manager.save()
         return_game = Game(game_type=game_type_obj,game_manager=new_game_manager)
-
         return_game.save()
         serializer = GameSerializer(return_game)
         return Response(serializer.data)
@@ -34,10 +46,12 @@ def join_game(request):
         request_obj = validate_request(JoinGameRequest, request.data)
         pin_code = request_obj['pin_code']
         nickname = request_obj['nickname']
-        game  = Game.objects.get(pin_code=pin_code)
+        game = Game.objects.get(pin_code=pin_code)
         player = Player(nickname=nickname ,game=game)
         player.save()
         request.session['pin_code'] = pin_code
+        request.session['player_id'] = player.id
+
         serializer = PlayerSerializer(player)
         return Response(serializer.data)
 
@@ -52,14 +66,14 @@ def start_game(request):
         # todo : redirect to some sort of start game function.
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 def get_next_question(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         request_obj = validate_request(GetNextQuestionRequest,request.data)
         pin_code = request.session['pin_code']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
-        question = game_manager.get_next_question()
+        question = game_manager.get_next_question(request)
         return Response(question)
 
 
@@ -71,7 +85,7 @@ def get_players(request):
         request_obj = validate_request(GetPlayersRequest,request.GET)
         pin_code = request.session['pin_code']
         players = Player.objects.filter(game__pin_code=pin_code).all()
-        serializer = PlayerSerializer(players,many=True)
+        serializer = PlayerSerializer(players, many=True)
         return Response(serializer.data)
 
 
@@ -84,13 +98,13 @@ def get_session_object(request):
 @api_view(['POST'])
 def save_answer(request):
     if request.method == 'POST':
-        request_obj = validate_request(SaveAnswerRequest,request.data)
-        pin_code = request_obj['pin_code']
-        player = request_obj['player']
+        request_obj = validate_request(SaveAnswerRequest, request.data)
+        pin_code = request.session['pin_code']
+        player = request.session['player']
         ans = request_obj['answer']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
-        ok = game_manager.save_answer(request, player,ans)
+        ok = game_manager.save_answer(request, player, ans)
         return Response(ok)
 
 @api_view(['GET'])
@@ -100,7 +114,7 @@ def get_round_summary(request):
         pin_code = request_obj['pin_code']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
-        summary = game_manager.get_round_summary(request)
+        summary = game_manager.get_round_summary()
         return Response(summary)
 
 @api_view(['GET'])
@@ -110,7 +124,7 @@ def get_score_board(request):
         pin_code = request_obj['pin_code']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
-        score_board = game_manager.get_score_board(request)
+        score_board = game_manager.get_score_board()
         return Response(score_board)
 
 
