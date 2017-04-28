@@ -10,10 +10,19 @@ app.controller('BeforeStartController', ['$stateParams', '$timeout', '$scope', '
         $scope.data = [];
 
         (function tick() {
+
             apiRequest('/get_players/', 'GET', "",
                 "", "", "").then(function (data) {
                 $scope.players = data;
-                $timeout(tick, 1000);
+            })
+             apiRequest('/game/', 'GET', {"pin_code":$scope.gameId},
+                "", "", "").then(function (data) {
+                if(data.game_started){
+                    $location.path('/show-question');
+                }
+                else{
+                    $timeout(tick, 1000);
+                }
             })
         })();
 
