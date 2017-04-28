@@ -35,6 +35,7 @@ function ($stateProvider,$urlRouterProvider,$locationProvider ) {
         url: "/show-question",
         templateUrl: "/static/framework/views/ShowQuestionView/show-question.html"
     }).state('round-summary', {
+        controller: "RoundSummaryController",
         url: "/round-summary",
         templateUrl: "/static/framework/views/RoundSummaryView/round-summary.html"
     });;
