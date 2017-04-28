@@ -33,5 +33,8 @@ class GetScoreBoardRequest(serializers.Serializer):
     pin_code = serializers.IntegerField()
 
 
+class GetGameByPincode(serializers.Serializer):
+    pin_code = serializers.IntegerField()
+
 
 

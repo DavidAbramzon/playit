@@ -81,6 +81,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'playit.wsgi.application'
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
@@ -91,6 +92,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         # HTTP Basic Authentication, signed against a user's username and password. Basic authentication is generally only appropriate for testing.
     ),
+}
+REST_FRAMEWORK = {
 }
 
 # Database
