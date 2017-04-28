@@ -9,6 +9,17 @@ from playit.api.serializers import *
 from playit.models import Game, Player, GameType, GameManager
 
 
+
+class GameViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows words to be viewed or edited.
+    """
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+
+
+
 def validate_request(serializer, request_data):
     request_obj = serializer(data=request_data)
     request_obj.is_valid(raise_exception=True)
@@ -65,7 +76,6 @@ def start_game(request):
         game_obj.save()
         serializer = GameSerializer(game_obj)
         return Response(serializer.data)
-        # todo : redirect to some sort of start game function.
 
 
 @api_view(['GET'])
