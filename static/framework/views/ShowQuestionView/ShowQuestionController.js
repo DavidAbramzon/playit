@@ -3,6 +3,10 @@ app.controller('ShowQuestionController', ['$stateParams', '$scope', 'ApiService'
         var apiRequest = ApiService.ApiRequest;
 
         $scope.gameId = sessionStorage.getItem("gameId");
+        apiRequest('/get_next_question/', 'GET', "",
+                 "", "", "").then(function (data) {
+            $scope.face = data.face;
+        });
         var _video = null, patData = null;
 
         $scope.patOpts = {x: 0, y: 0, w: 25, h: 25};
@@ -97,7 +101,7 @@ app.controller('ShowQuestionController', ['$stateParams', '$scope', 'ApiService'
             var fd = new FormData();
             fd.append('file', imgBase64);
             apiRequest('/save_answer/', 'POST', "",
-                fd , "", "").then(function (data) {
+                {"answer":imgBase64} , "","", "").then(function (data) {
                 $scope.countDown = data;
                 if ($scope.countDown > 0) {
                     $timeout(tick, 1000);

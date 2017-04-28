@@ -58,7 +58,7 @@ def join_game(request):
 @api_view(['POST'])
 def start_game(request):
     if request.method == 'POST':
-        request_obj = validate_request(StartGameRequest,request.data)
+        request_obj = validate_request(StartGameRequest, request.data)
         pin_code = request.session['pin_code']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_obj.game_started = True
