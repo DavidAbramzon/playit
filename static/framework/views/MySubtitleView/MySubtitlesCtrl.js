@@ -20,7 +20,7 @@ function ($scope, FileUploader,ApiService,MySubtitlesService,$uibModal) {
 
     $scope.open = function(size) {
 
-		var modalInstance = $uibModal.open({
+		var modalInstance = $uibModal. open({
 			templateUrl : '/static/views/CreationProcessView/creation-process-modal.html',
 			controller : 'CreationProcessCtrl',
 			size : size,

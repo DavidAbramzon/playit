@@ -1,0 +1,60 @@
+<section class="show-question">
+    <app-game-header>
+        <div class="game-header" style="visibility: visible;">
+            <!--template bindings={}--><span class="pin"> PIN: {{ gameId }} </span>
+
+            <!--template bindings={}-->
+
+            <!--template bindings={}-->
+
+            <!--template bindings={}--><span class="text"> 1 OF 7 </span>
+
+            <!--template bindings={}-->
+        </div>
+    </app-game-header>
+    <!--template bindings={}-->
+    <progress class="progress is-primary" value="26002" max="45000"></progress>
+
+    <div class="game-main">
+        <!--template bindings={}-->
+
+        <!--template bindings={}-->
+
+        <!--template bindings={}-->
+        <form class="ng-untouched ng-pristine ng-valid">
+            <img src="/static/emoji-it/emojis/emoji1.jpg/"/>
+            <div class="alert alert-error ng-scope" ng-show="webcamError" style="">
+                <span>Webcam could not be started. Did you give access to it?</span>
+            </div>
+            <webcam channel="channel"
+                    on-streaming="onSuccess()"
+                    on-error="onError(err)"
+                    on-stream="onStream(stream)"></webcam>
+            <button ng-click="makeSnapshot()">take picture</button>
+            <canvas id="snapshot" width="300" height="300"></canvas>
+
+            <p class="control">
+                <input autofocus="" class="input ng-untouched ng-pristine ng-valid" maxlength="40" name="answer"
+                       type="text">
+                <!--template bindings={}-->
+            </p>
+
+            <p class="control">
+                <button class="button is-primary is-fullwidth" type="submit" disabled="">SEND</button>
+            </p>
+        </form>
+
+        <!--template bindings={}-->
+
+        <!--template bindings={}-->
+    </div>
+
+    <!--template bindings={}-->
+    <app-game-footer _nghost-nqi-15="">
+        <div class="game-footer"></div>
+        <!--span  class="name"> RON </span-->
+        <span class="score">  </span>
+    </app-game-footer>
+</section>
+
+
