@@ -51,7 +51,7 @@ class EmojiGameManager(FW.GameManager):
         pin_code = request.session['pin_code']
         game_obj = FW.Game.objects.get(pin_code=pin_code)
         round = game_obj.round_number
-        game_obj.round_number=round+1
+        game_obj.round_number = round+1
         game_obj.save()
         FW.player.objects.values_list('nickname', 'last_round_score')
 
@@ -97,11 +97,11 @@ class EmojiGameManager(FW.GameManager):
         relation = ((ans_array[55][0]-ans_array[49][0])/(ans_array[13][0]-ans_array[5][0]))
         if (relation > 0.3):
             res=10
-        if (relation>0.4):
+        elif (relation>0.4):
             res=20
-        if (relation>0.5):
+        elif (relation>0.5):
             res=30
-        if (relation>0.65):
+        elif (relation>0.65):
             res=40
         return res
 
