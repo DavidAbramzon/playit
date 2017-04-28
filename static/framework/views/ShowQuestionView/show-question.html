@@ -7,16 +7,15 @@
         </div>
     </app-game-header>
     <!--template bindings={}-->
-    <progress class="progress is-primary" value="26002" max="45000"></progress>
 
     <div class="game-main">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col">
-                        <img src="{{ face }}" class="img-responsive"/>
+                    <div class="col-sm-2">
+                        <img src="{{ face }}" class="img-responsive" height="180"/>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-xs-6">
-                        <canvas id="snapshot" class="img-responsive"></canvas>
+                    <div class="col-sm-8">
+                        <canvas id="snapshot" class="img-responsive"  ></canvas>
                     </div>
                 </div>
                 <div class="col-lg-12 img-responsive" ng-show="webcamError">
@@ -32,10 +31,6 @@
                         on-stream="onStream(stream)"></webcam>
                 <button ng-click="makeSnapshot()">take picture</button>
                 <div class="row">
-
-                    <p class="control">
-                        <button class="button is-primary is-fullwidth" type="submit">SEND</button>
-                    </p>
 
         <!--template bindings={}-->
 

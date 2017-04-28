@@ -5,6 +5,7 @@ app.controller('RoundSummaryController', ['$stateParams', '$timeout', '$scope', 
     function ($stateParams, $timeout, $scope, ApiService, $location,
               $localStorage, $sessionStorage) {
         var apiRequest = ApiService.ApiRequest;
+        $scope.gameId = sessionStorage.getItem("gameId");
         apiRequest('/get_round_summary/', 'GET', "",
                 "", "", "").then(function (data) {
                 $scope.players = data;
