@@ -7,6 +7,7 @@ from playit.api.requests import CreateGameRequest, StartGameRequest, JoinGameReq
     GetNextQuestionRequest, SaveAnswerRequest, getRoundSummaryRequest, GetScoreBoardRequest, GetGameByPincode
 from playit.api.serializers import *
 from playit.models import Game, Player, GameType, GameManager
+import tempfile
 
 
 
@@ -103,8 +104,15 @@ def save_answer(request):
     if request.method == 'POST':
         request_obj = validate_request(SaveAnswerRequest, request.data)
         pin_code = request.session['pin_code']
-        player = request.session['player']
-        ans = request_obj['answer']
+        player = Player.objects.get(id = request.session['player_id'])
+        ans = request_obj['answer'].replace("data:image/png;base64,","")
+        fh = open("imageToSave.png", "wb")
+        fh.write(ans.decode('base64'))
+
+        fh.close()
+        fh = open("imageToSave.png", "r")
+        fh.write(ans.decode('base64'))
+        fh.close()
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
         ok = game_manager.save_answer(request, player, ans)

@@ -21,6 +21,7 @@ class GetPlayersRequest(serializers.Serializer):
 
 
 class SaveAnswerRequest(serializers.Serializer):
+    answer = serializers.CharField()
     pass
 
 
