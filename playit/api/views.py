@@ -115,7 +115,7 @@ def save_answer(request):
         fh.close()
         game_obj = Game.objects.get(pin_code=pin_code)
         game_manager = game_obj.game_manager
-        ok = game_manager.save_answer(request, player, ans)
+        ok = game_manager.save_answer(request, player)
         return Response(ok)
 
 @api_view(['GET'])
