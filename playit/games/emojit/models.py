@@ -67,28 +67,71 @@ class EmojiGameManager(FW.GameManager):
     def analyze_answer(self, image):
         # max score=100
         # min score =0
-        partA = self.firstTest(image)
-        partB = self.secondTest(image)
-        partC = self.thirdTest(image)
+
+
+
         return (partA + partB + partC)
 
-    def firstTest(image):
-        res = 0
-        # test based of some sort of something.
-        # score between 0-20
+
+    def teeth_shape_of_eyes(ans_array):
+        res=0
+        value= (2*ans_array[41][1]-ans_array[37][1]-ans_array[40][1]) + (2*ans_array[47][1]-ans_array[43][1]-ans_array[46][1])
+        res = 80 - value
+        if (res < 0):
+            res = 0
         return res
 
-    def secondTest(image):
-        res = 0
-        # test based of some sort of something.
-        # score between 0-40
+    def teeth_shape_of_mouth(ans_array):
+        res=0
+        value = (ans_array[55][0]-ans_array[49][0])*(ans_array[58][1]-ans_array[52][1])
+        if (value<10):
+            res=50
+        elif (value<20):
+            res = 30
+        elif (value< 30):
+            res = 10
         return res
 
-    def thirdTest(image):
-        res = 0
-        # test based of some sort of something.
-        # score between 0-40
+    def teeth_area_of_mouth(ans_array):
+        res=0
+        value = (abs(ans_array[50][1]-ans_array[54][1])+abs(ans_array[60][1]-ans_array[56][1]))
+        if (value>5000):
+            res = 10
+        if (value>5000):
+            res = 15
+        if (value > 8000):
+            res = 20
+        if (value > 10000):
+            res = 25
+        if (value > 13000):
+            res = 35
+        if (value > 16000):
+            res = 50
         return res
+
+    def right_evy_opened(ans_array):
+        res = 0
+        value = (abs(ans_array[47][1] - ans_array[45][1]) + abs(ans_array[48][1] - ans_array[44][1]))
+        if (value>30):
+            res = 30
+        elif (value>15):
+            res = 10
+        return res
+    def left_evy_opened(ans_array):
+        res = 0
+        value = (abs(ans_array[42][1] - ans_array[38][1]) + abs(ans_array[41][1] - ans_array[39][1]))
+        if (value>30):
+            res = 30
+        elif (value>15):
+            res = 10
+        return res
+    def open_eyes(ans_array):
+        res = 0  # score up to 40
+        left = EmojiGameManager.left_evy_opened(ans_array)
+        right = EmojiGameManager.right_evy_opened(ans_array)
+        res = left + right
+        return res
+
 
     def big_smile(ans_array):
         res=0 #score up to 40
@@ -105,9 +148,19 @@ class EmojiGameManager(FW.GameManager):
             res=40
         return res
 
-    def open_eyes(ans_array):
-        res = 0  # score up to 40
-        relation = abs(-5)
+    def large_smile(ans_array):
+        res =0
+        relation = (ans_array[58][1] - ((ans_array[55][1]) + (ans_array[49][1]))/2)
+        res = 2*relation
+        return res
+
+    def high_eyebrows(ans_array):
+        res =0
+
+        return res
+
+
+
 
 
 
