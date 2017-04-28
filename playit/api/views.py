@@ -63,6 +63,8 @@ def start_game(request):
         game_obj = Game.objects.get(pin_code=pin_code)
         game_obj.game_started = True
         game_obj.save()
+        serializer = GameSerializer(game_obj)
+        return Response(serializer.data)
         # todo : redirect to some sort of start game function.
 
 
