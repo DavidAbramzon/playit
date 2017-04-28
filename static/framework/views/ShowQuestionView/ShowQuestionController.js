@@ -40,7 +40,6 @@ app.controller('ShowQuestionController', ['$stateParams', '$scope', 'ApiService'
         };
 
         $scope.makeSnapshot = function () {
-            alert("bla");
             if (_video) {
                 var patCanvas = document.querySelector('#snapshot');
                 if (!patCanvas) return;

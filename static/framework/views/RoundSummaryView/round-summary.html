@@ -1,37 +1,70 @@
-<section  class="game-staging">
-    <!--template bindings={}--><app-game-header  ><div  class="game-header" style="visibility: visible;">
-    <!--template bindings={}--><span  class="pin"> PIN:{{ gameId }} </span>
+<section class="game-staging">
+    <!--template bindings={}-->
+    <app-game-header>
+        <div class="game-header" style="visibility: visible;">
+            <!--template bindings={}--><span class="pin"> PIN:{{ gameId }} </span>
+
+            <!--template bindings={}-->
+
+            <!--template bindings={}-->
+            <button class="button is-primary"> START</button>
+
+            <!--template bindings={}-->
+
+            <!--template bindings={}-->
+        </div>
+    </app-game-header>
+    <!--template bindings={}-->
 
     <!--template bindings={}-->
 
-    <!--template bindings={}--><button  class="button is-primary"> START </button>
+    <div class="game-main">
+        <!--template bindings={}-->
 
-    <!--template bindings={}-->
+        <div class="spacer is-hidden-mobile">
 
-    <!--template bindings={}-->
-</div></app-game-header>
-    <!--template bindings={}-->
+            <div _ngcontent-c10="" class="game-main">
+                <!---->
 
-    <!--template bindings={}-->
+                <!---->
+                <div _ngcontent-c10="">
+                    <div ng-repeat="player in players | orderBy:'player.score'">
+                        <!---->
+                        <div _ngcontent-c10="" class="box player">
+                <span _ngcontent-c10="" class="left">
 
-    <div  class="game-main">
-         <!--template bindings={}-->
+                    <img _ngcontent-c10="" class="picture" src="{{ player.lastRoundImage }}">
+                    <span _ngcontent-c10="" class="name"> {{ player.nickname }} </span>
 
-        <div  class="spacer is-hidden-mobile"> </div>
+                </span>
+                            <span _ngcontent-c10="" class="score"> {{ player.last_round_score }} </span>
+                            <span _ngcontent-c10="" class="score"> {{ player.score }} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <!--template bindings={}--><div  class="columns is-mobile is-multiline">
-            <!--template bindings={}--><div ng-repeat="player in players"  class="player column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
-                <img  class="picture" src="/static/framework/images/avatar-bull/avatar0.png">
-                <span > {{  player.nickname }} </span>
+
+        </div>
+
+        <!--template bindings={}-->
+        <div class="columns is-mobile is-multiline">
+            <!--template bindings={}-->
+            <div ng-repeat="player in players"
+                 class="player column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
+                <img class="picture" src="/static/framework/images/avatar-bull/avatar0.png">
+                <span> {{ player.nickname }} </span>
             </div>
         </div>
 
-         <!--template bindings={}-->
+        <!--template bindings={}-->
     </div>
 
-    <!--template bindings={}--><app-game-footer  _nghost-nqi-15=""><div  class="game-footer">
-    <span  class="name"> {{ nickname }} </span>
-    <span  class="score">  </span>
-</div>
-</app-game-footer>
+    <!--template bindings={}-->
+    <app-game-footer _nghost-nqi-15="">
+        <div class="game-footer">
+            <span class="name"> {{ nickname }} </span>
+            <span class="score">  </span>
+        </div>
+    </app-game-footer>
 </section>
