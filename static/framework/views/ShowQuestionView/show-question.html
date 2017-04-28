@@ -1,48 +1,41 @@
 <section class="show-question">
     <app-game-header>
         <div class="game-header" style="visibility: visible;">
-            <!--template bindings={}--><span class="pin"> PIN: {{ gameId }} </span>
+            <span class="pin"> PIN: {{ gameId }} </span>
+            <span class="text">{{ countDown }}</span>
 
-            <!--template bindings={}-->
-
-            <!--template bindings={}-->
-
-            <!--template bindings={}--><span class="text"> 1 OF 7 </span>
-
-            <!--template bindings={}-->
         </div>
     </app-game-header>
     <!--template bindings={}-->
     <progress class="progress is-primary" value="26002" max="45000"></progress>
 
     <div class="game-main">
-        <!--template bindings={}-->
-
-        <!--template bindings={}-->
-
-        <!--template bindings={}-->
-        <form class="ng-untouched ng-pristine ng-valid">
-            <img src="/static/emoji-it/emojis/emoji1.jpg/"/>
-            <div class="alert alert-error ng-scope" ng-show="webcamError" style="">
-                <span>Webcam could not be started. Did you give access to it?</span>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <img src="/static/emoji-it/emojis/emoji1.jpg/" class="img-responsive"/>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <canvas id="snapshot" class="img-responsive"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-12 img-responsive" ng-show="webcamError">
+                    <span>Webcam could not be started. Did you give access to it?</span>
+                </div>
             </div>
-            <webcam channel="channel"
-                    on-streaming="onSuccess()"
-                    on-error="onError(err)"
-                    on-stream="onStream(stream)"></webcam>
-            <button ng-click="makeSnapshot()">take picture</button>
-            <canvas id="snapshot" width="300" height="300"></canvas>
 
-            <p class="control">
-                <input autofocus="" class="input ng-untouched ng-pristine ng-valid" maxlength="40" name="answer"
-                       type="text">
-                <!--template bindings={}-->
-            </p>
+            <div class="row">
 
-            <p class="control">
-                <button class="button is-primary is-fullwidth" type="submit" disabled="">SEND</button>
-            </p>
-        </form>
+                <webcam channel="channel"
+                        on-streaming="onSuccess()"
+                        on-error="onError(err)"
+                        on-stream="onStream(stream)"></webcam>
+                <button ng-click="makeSnapshot()">take picture</button>
+                <div class="row">
+
+                    <p class="control">
+                        <button class="button is-primary is-fullwidth" type="submit" disabled="">SEND</button>
+                    </p>
 
         <!--template bindings={}-->
 

@@ -34,7 +34,10 @@ function ($stateProvider,$urlRouterProvider,$locationProvider ) {
         controller:'ShowQuestionController',
         url: "/show-question",
         templateUrl: "/static/framework/views/ShowQuestionView/show-question.html"
-    });
+    }).state('round-summary', {
+        url: "/round-summary",
+        templateUrl: "/static/framework/views/RoundSummaryView/round-summary.html"
+    });;
     $urlRouterProvider.otherwise("/home");
     $locationProvider.html5Mode({
         enabled: true,
