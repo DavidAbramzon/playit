@@ -36,6 +36,7 @@ def join_game(request):
         nickname = request_obj['nickname']
         game  = Game.objects.get(pin_code=pin_code)
         player = Player(nickname=nickname ,game=game)
+        player.save()
         request.session['pin_code'] = pin_code
         serializer = PlayerSerializer(player)
         return Response(serializer.data)

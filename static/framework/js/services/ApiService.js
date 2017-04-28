@@ -1,4 +1,4 @@
-app.service('ApiService', ['$http', '$q', '$location', '$rootScope', '$resource', function ($http, $q, $location,  $rootScope, $resource) {
+app.service('ApiService', ['$http', '$q', '$location', '$rootScope', function ($http, $q, $location,  $rootScope) {
 
     var self = this;
     self.user_token = null;
@@ -92,8 +92,6 @@ app.service('ApiService', ['$http', '$q', '$location', '$rootScope', '$resource'
         actions = actions? actions:null;
         return $resource('/api/subtitle/:id',paramDefaults,actions);
     };
-
-
 
     init();
 

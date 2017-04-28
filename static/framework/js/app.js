@@ -3,7 +3,7 @@
 */
 'use strict';
 angular.module("playit", [
-    'ui.router'
+    'ui.router','ngStorage','webcam'
 
 
 ]);

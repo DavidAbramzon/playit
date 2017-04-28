@@ -17,16 +17,21 @@ function ($stateProvider,$urlRouterProvider,$locationProvider ) {
         url: "/home",
         templateUrl: "/static/framework/views/HomeView/home.html"
     }).state('create-game', {
-        controller:"CreateGameController",
+        controller:"JoinGameController",
         url: "/create-game",
-        templateUrl: "/static/framework/views/JoinGameView/join-game.html"
+        templateUrl: "/static/framework/views/JoinGameView/join-game.html",
+        params: { shouldCreate: true}
     }).state('join-game', {
+        controller:"JoinGameController",
         url: "/join-game",
-        templateUrl: "/static/framework/views/JoinGameView/join-game.html"
+        templateUrl: "/static/framework/views/JoinGameView/join-game.html",
+        params: { shouldCreate: false}
     }).state('before-start', {
+        controller:"BeforeStartController",
         url: "/before-start",
         templateUrl: "/static/framework/views/BeforeStartView/before-start.html"
     }).state('show-question', {
+        controller:'ShowQuestionController',
         url: "/show-question",
         templateUrl: "/static/framework/views/ShowQuestionView/show-question.html"
     });

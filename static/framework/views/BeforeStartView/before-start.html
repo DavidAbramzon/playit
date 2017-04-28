@@ -1,6 +1,6 @@
 <section  class="game-staging">
     <!--template bindings={}--><app-game-header  ><div  class="game-header" style="visibility: visible;">
-    <!--template bindings={}--><span  class="pin"> PIN: AAUR </span>
+    <!--template bindings={}--><span  class="pin"> PIN:{{ gameId }} </span>
 
     <!--template bindings={}-->
 
@@ -20,9 +20,9 @@
         <div  class="spacer is-hidden-mobile"> </div>
 
         <!--template bindings={}--><div  class="columns is-mobile is-multiline">
-            <!--template bindings={}--><div  class="player column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
+            <!--template bindings={}--><div ng-repeat="player in players"  class="player column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
                 <img  class="picture" src="/static/framework/images/avatar-bull/avatar0.png">
-                <span > ron </span>
+                <span > {{  player.nickname }} </span>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
     </div>
 
     <!--template bindings={}--><app-game-footer  _nghost-nqi-15=""><div  class="game-footer">
-    <span  class="name"> RON </span>
+    <span  class="name"> {{ nickname }} </span>
     <span  class="score">  </span>
 </div>
 </app-game-footer>
