@@ -26,12 +26,14 @@ from playit.api import views
 
 router = routers.DefaultRouter()
 #todo example delete me
-router.register(r'game', api.views.GameViewSet)
+# router.register(r'game', api.views.GameViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
+
     url(r'^api/token-auth/', auth_views.obtain_auth_token),
+    url(r'^api/game/', api.views.get_game_by_pincode),
     url(r'^api/create_game/',  api.views.create_game),
     url(r'^api/join_game/', api.views.join_game),
     url(r'^api/start_game/', api.views.start_game),
