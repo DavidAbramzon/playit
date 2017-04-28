@@ -84,8 +84,8 @@ class EmojiGameManager(FW.GameManager):
         elif (round==3):
             #sad
             partA=EmojiGameManager.both_eyes_closed(ans_array)
-            partB=1
-            partC=1
+            partB=EmojiGameManager.sad_mouth(ans_array)
+            partC=EmojiGameManager.high_eyebrows(ans_array)
         elif (round==4):
             # teeth
             partA=EmojiGameManager.teeth_shape_of_eyes(ans_array)
@@ -103,9 +103,9 @@ class EmojiGameManager(FW.GameManager):
             partC=EmojiGameManager.open_eyes(ans_array)
         elif (round==6):
             #  horrified
-            partA=EmojiGameManager.sad_mouth(ans_array)
+            partA=EmojiGameManager.horrified_mouth(ans_array)
             partB=EmojiGameManager.high_eyebrows(ans_array)
-            partC=EmojiGameManager.both_eyes_closed(ans_array)
+            partC=EmojiGameManager.open_eyes(ans_array)
 
 
 
