@@ -1,12 +1,14 @@
 from django.http import JsonResponse
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from playit.api.requests import CreateGameRequest, StartGameRequest, JoinGameRequest, GetPlayersRequest, \
-    GetNextQuestionRequest, SaveAnswerRequest, getRoundSummaryRequest, GetScoreBoardRequest
+    GetNextQuestionRequest, SaveAnswerRequest, getRoundSummaryRequest, GetScoreBoardRequest, GetGameByPincode
 from playit.api.serializers import *
 from playit.models import Game, Player, GameType, GameManager
+
+
 
 
 def validate_request(serializer, request_data):
@@ -58,12 +60,13 @@ def join_game(request):
 @api_view(['POST'])
 def start_game(request):
     if request.method == 'POST':
-        request_obj = validate_request(StartGameRequest,request.data)
+        request_obj = validate_request(StartGameRequest, request.data)
         pin_code = request.session['pin_code']
         game_obj = Game.objects.get(pin_code=pin_code)
         game_obj.game_started = True
         game_obj.save()
-        # todo : redirect to some sort of start game function.
+        serializer = GameSerializer(game_obj)
+        return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -126,6 +129,17 @@ def get_score_board(request):
         game_manager = game_obj.game_manager
         score_board = game_manager.get_score_board()
         return Response(score_board)
+
+
+@api_view(['GET'])
+def get_game_by_pincode(request):
+    if request.method == 'GET':
+        request_obj = validate_request(GetGameByPincode,request.GET)
+        pin_code = request_obj['pin_code']
+        game_obj = Game.objects.get(pin_code=pin_code)
+        serializer = GameSerializer(game_obj)
+        return Response(serializer.data)
+
 
 
 
