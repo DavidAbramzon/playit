@@ -1,5 +1,5 @@
-app.controller('ShowQuestionController', ['$stateParams', '$scope', 'ApiService', '$location', '$localStorage', '$sessionStorage',
-    function ($stateParams, $scope, ApiService, $location, $localStorage, $sessionStorage) {
+app.controller('ShowQuestionController', ['$stateParams','$timeout', '$scope', 'ApiService', '$location', '$localStorage', '$sessionStorage',
+    function ($stateParams, $timeout,$scope, ApiService, $location, $localStorage, $sessionStorage) {
         var apiRequest = ApiService.ApiRequest;
 
         $scope.gameId = sessionStorage.getItem("gameId");
@@ -7,9 +7,13 @@ app.controller('ShowQuestionController', ['$stateParams', '$scope', 'ApiService'
                  "", "", "").then(function (data) {
             $scope.face = data.face;
         });
+        $timeout(nextRound, 15000);
+        function nextRound() {
+            $location.path('/round-summary');
+        };
         var _video = null, patData = null;
 
-        $scope.patOpts = {x: 0, y: 0, w: 25, h: 25};
+        $scope.patOpts = {x: 0, y: 0, w: 250, h: 250};
 
         // Setup a channel to receive a video property
         // with a reference to the video element
@@ -27,12 +31,11 @@ app.controller('ShowQuestionController', ['$stateParams', '$scope', 'ApiService'
 
         $scope.onSuccess = function () {
             // The video element contains the captured camera data
-            _video = $scope.channel.video;
-            $scope.$apply(function () {
+                _video = $scope.channel.video;
+                console.log(_video.height);
                 $scope.patOpts.w = _video.width;
                 $scope.patOpts.h = _video.height;
                 //$scope.showDemos = true;
-            });
         };
 
         $scope.onStream = function (stream) {
@@ -48,8 +51,8 @@ app.controller('ShowQuestionController', ['$stateParams', '$scope', 'ApiService'
                 patCanvas.height = _video.height;
                 var ctxPat = patCanvas.getContext('2d');
 
-                var idata = getVideoData($scope.patOpts.x, $scope.patOpts.y,
-                    $scope.patOpts.w, $scope.patOpts.h);
+                var idata = getVideoData($scope.patOpts.x, $scope.patOpts.y, $scope.patOpts.w, $scope.patOpts.h);
+                console.log($scope.patOpts.h);
                 ctxPat.putImageData(idata, 0, 0);
 
                 sendSnapshotToServer(patCanvas.toDataURL());
