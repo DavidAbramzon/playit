@@ -24,9 +24,9 @@ from rest_framework.authtoken import views as auth_views
 from playit import api
 from playit.api import views
 
-router = routers.DefaultRouter(trailing_slash=False)
+router = routers.DefaultRouter()
 #todo example delete me
-# router.register(r'words', views.WordViewSet)
+router.register(r'game', api.views.GameViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
